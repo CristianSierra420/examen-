@@ -55,4 +55,47 @@ public class Bancosemanadoce {
             }
         }
     }
+    public static int seleccionarCuenta(Scanner scanner) {
+        System.out.println("\nSeleccionar  cuenta:");
+        for (int i = 0; i < nombres.length; i++) {
+            System.out.println(i + ". " + nombres[i]);
+        }
+        System.out.print("Ingrese el número de la cuenta: ");
+        int indice = scanner.nextInt();
+        
+        if (indice >= 0 && indice < nombres.length) {
+            return indice;
+        } else {
+            System.out.println("Índice de cuenta inválido. Intente de nuevo.");
+            return -1;
+        }
+    }
+
+    public static void depositar(int indiceCuenta, double cantidad) {
+        if (cantidad > 0) {
+            saldos[indiceCuenta] += cantidad;
+            System.out.println("Depósito exitoso. Saldo nuevo de " + nombres[indiceCuenta] + ": $" + saldos[indiceCuenta]);
+        } else {
+            System.out.println("El valor debe ser positivo.");
+        }
+    }
+
+
+    public static void retirar(int indiceCuenta, double cantidad) {
+        if (cantidad > 0) {
+            if (saldos[indiceCuenta] >= cantidad) {
+                saldos[indiceCuenta] -= cantidad;
+                System.out.println("Retiro exitoso. Saldo nuevo de " + nombres[indiceCuenta] + ": $" + saldos[indiceCuenta]);
+            } else {
+                System.out.println("Saldo insuficiente.");
+            }
+        } else {
+            System.out.println("El valor debe ser positivo.");
+        }
+    }
+
+
+    public static void consultarSaldo(int indiceCuenta) {
+        System.out.println("El saldo de " + nombres[indiceCuenta] + " Es: $" + saldos[indiceCuenta]);
+    }
 }
